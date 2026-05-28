@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="website.css">
+<script src="main.js"></script>
+
+    <title>Western</title>
+</head>
+<body>
+
+<header style="background-image: url('header.png'); background-size: cover; background-position: center center; height: 400px;">
+</header>
+
+<!-- Inside body -->
+<div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+		<a href="cart.html" class="cart-button">🛒 Cart</a>
+		<a href="login.html">My Account</a>
+    </div>
+<div class="category-grid">
+  <a href="Wedding.html" class="category-card">
+    <img src="wedding.jpg" alt="Wedding Collection">
+  </a>
+  
+  <a href="Jewelry.html" class="category-card">
+    <img src="jewelry.jpg" alt="Jewelry">
+  </a>
+  
+  <a href="Saree.html" class="category-card">
+    <img src="saree.jpg" alt="Saree">
+   </a>
+   <a href="kaftan.html" class="category-card">
+    <img src="kaftan.jpg" alt="Kaftan Collection">
+  </a>
+   
+   <a href="Dress.html" class="category-card">
+    <img src="salwar.jpg" alt="Dress">
+  </a>
+  <a href="Kurti.html" class="category-card">
+    <img src="kurti.jpg" alt="Kurti">
+    
+  </a>
+  <a href="Western.html" class="category-card">
+    <img src="western.jpg" alt="Western Wear">
+  </a>
+  
+  <a href="jutti.html" class="category-card">
+    <img src="jutti.jpg" alt="Jutti">
+  </a>
+ 
+</div>
+<!-- Wedding Collection Content -->
+<div class="container">
+    
+    <div class="product">
+        <img src="blazer1.jpg" alt="blazer 1">
+		<h2>Blazer</h2>
+		<p>Price- 3,000.</p>
+		<button onclick="addToCart('blazer', 3000, 'blazer1.jpg')">Add to 🛒</button>
+    </div>
+    
+    <div class="product">
+        <img src="blazer2.jpg" alt="blazer 2">
+		<h2>Blazer</h2>
+		<p>Price- 3,000.</p>
+<button onclick="addToCart('blazer', 3000, 'blazer2.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="blazer3.jpg" alt="blazer 3">
+		<h2>Blazer</h2>
+		<p>Price- 3,000.</p>
+<button onclick="addToCart('blazer', 3000, 'blazer3.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="blazer4.jpg" alt="blazer 4">
+		<h2>Blazer</h2>
+		<p>Price- 3,000.</p>
+<button onclick="addToCart('blazer', 3000, 'blazer4.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top1.jpg" alt="top 1">
+		<h2>Srug</h2>
+		<p>Price- 1,000.</p>
+		<button onclick="addToCart('srug', 1000, 'top1.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top2.jpg" alt="top 2">
+		<h2>Co-ord set</h2>
+		<p>Price- 1,500.</p>
+		<button onclick="addToCart('co-ord set', 1500, 'top2.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top3.jpg" alt="top 3">
+		<h2>Co-ord set</h2>
+		<p>Price- 1,500.</p>
+<button onclick="addToCart('co-ord set', 1500, 'top3.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top4.jpg" alt="top 4">
+				<h2>Top</h2>
+				<p>Price- 1,000.</p>
+<button onclick="addToCart('top', 1000, 'top4.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top5.jpg" alt="top 5">
+				<h2>Top</h2>
+				<p>Price- 1,000.</p>
+		<button onclick="addToCart('top', 1000, 'top5.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top6.jpg" alt="top 6">
+		<h2>Top</h2>
+		<p>Price- 1,500.</p>
+		<button onclick="addToCart('top', 1500, 'top6.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top7.jpg" alt="top 7">
+		<h2>Co-ord set</h2>
+		<p>Price- 1,500.</p>
+		<button onclick="addToCart('co-ord set', 1500, 'top7.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="top8.jpg" alt="top 8">
+		<h2>Co-ord set</h2>
+		<p>Price- 1,500.</p>
+		<button onclick="addToCart('co-ord set', 1500, 'top8.jpg')">Add to 🛒</button>
+    </div>
+
+    <!-- Add more wedding dress options here as required -->
+</div>
+<div class="section">
+  <img src="supoortpic.png" alt="Our Benefits" class="footer-image">
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById("cart-count").innerText = `(${cart.length})`;
+});
+function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cart.push({ name, price, image });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    alert(name + " added to cart!");
+}
+</script>
+</body>
+</html>
