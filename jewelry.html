@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="website.css">
+    <title>jewelry</title>
+</head>
+<body>
+
+
+<header style="background-image: url('header.png'); background-size: cover; background-position: center center; height: 400px;">
+</header>
+<div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+		<a href="cart.html" class="cart-button">🛒 Cart</a>
+		<a href="login.html">My Account</a>
+    </div>
+<div class="category-grid">
+  <a href="Wedding.html" class="category-card">
+    <img src="wedding.jpg" alt="Wedding Collection">
+  </a>
+  
+  <a href="Jewelry.html" class="category-card">
+    <img src="jewelry.jpg" alt="Jewelry">
+  </a>
+  
+  <a href="Saree.html" class="category-card">
+    <img src="saree.jpg" alt="Saree">
+   </a>
+   <a href="kaftan.html" class="category-card">
+    <img src="kaftan.jpg" alt="Kaftan Collection">
+  </a>
+   
+   <a href="Dress.html" class="category-card">
+    <img src="salwar.jpg" alt="Dress">
+  </a>
+  <a href="Kurti.html" class="category-card">
+    <img src="kurti.jpg" alt="Kurti">
+    
+  </a>
+  <a href="Western.html" class="category-card">
+    <img src="western.jpg" alt="Western Wear">
+  </a>
+  
+  <a href="jutti.html" class="category-card">
+    <img src="jutti.jpg" alt="Jutti">
+  </a>
+ 
+</div>
+<!-- Wedding Collection Content -->
+<div class="container">
+    
+    
+    <div class="product">
+        <img src="jel1.jpg" alt="jewelry 1">
+        <h2>Classic jewelry</h2>
+		<p>Price- 5,500.</p>
+		<button onclick="addToCart('ornaments', 5500, 'jel1.jpg')">Add to 🛒</button>
+    </div>
+    
+    <div class="product">
+        <img src="jel2.jpg" alt="jewelry 2">
+        <h2>Classic jewelry</h2>
+		<p>Price- 4,500.</p>
+		<button onclick="addToCart('ornaments', 4500, 'jel2.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="jel3.jpg" alt="jewelry 3">
+        <h2>Classic jewelry</h2>
+		<p>Price- 5,500.</p>
+		<button onclick="addToCart('ornaments', 5500, 'jel3.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="jel4.jpg" alt="jewelry 4">
+        <h2>Classic jewelry</h2>
+		<p>Price- 6,500.</p>
+		<button onclick="addToCart('ornaments', 6500, 'jel4.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="jel5.jpg" alt="jewelry 5">
+        <h2>Classic jewelry</h2>
+		<p>Price- 5,500.</p>
+		<button onclick="addToCart('ornaments', 5500, 'jel5.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="jel6.jpg" alt="jewelry 6">
+        <h2>Classic jewelry</h2>
+		<p>Price- 4,500.</p>
+		<button onclick="addToCart('ornaments', 4500, 'jel6.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="jel7.jpg" alt="jewelry 7">
+        <h2>Classic jewelry</h2>
+		<p>Price- 6,500.</p>
+		<button onclick="addToCart('ornaments', 6500, 'jel7.jpg')">Add to 🛒</button>
+    </div>
+
+    <!-- Add more wedding dress options here as required -->
+</div>
+<div class="section">
+  <img src="supoortpic.png" alt="Our Benefits" class="footer-image">
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById("cart-count").innerText = `(${cart.length})`;
+});
+function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cart.push({ name, price, image });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    alert(name + " added to cart!");
+}
+</script>
+</body>
+</html>

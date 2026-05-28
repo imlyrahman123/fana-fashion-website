@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="website.css">
+    <title>Kurti</title>
+</head>
+<body>
+
+<header style="background-image: url('header.png'); background-size: cover; background-position: center center; height: 400px;">
+</header>
+<div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+		<a href="cart.html" class="cart-button">🛒 Cart</a>
+		<a href="login.html">My Account</a>
+    </div>
+<div class="category-grid">
+  <a href="Wedding.html" class="category-card">
+    <img src="wedding.jpg" alt="Wedding Collection">
+  </a>
+  
+  <a href="Jewelry.html" class="category-card">
+    <img src="jewelry.jpg" alt="Jewelry">
+  </a>
+  
+  <a href="Saree.html" class="category-card">
+    <img src="saree.jpg" alt="Saree">
+   </a>
+   <a href="kaftan.html" class="category-card">
+    <img src="kaftan.jpg" alt="Kaftan Collection">
+  </a>
+   
+   <a href="Dress.html" class="category-card">
+    <img src="salwar.jpg" alt="Dress">
+  </a>
+  <a href="Kurti.html" class="category-card">
+    <img src="kurti.jpg" alt="Kurti">
+    
+  </a>
+  <a href="Western.html" class="category-card">
+    <img src="western.jpg" alt="Western Wear">
+  </a>
+  
+  <a href="jutti.html" class="category-card">
+    <img src="jutti.jpg" alt="Jutti">
+  </a>
+ 
+</div>
+<!-- Wedding Collection Content -->
+<div class="container">
+   
+    
+    <div class="product">
+        <img src="kurti1.jpg" alt="Kurti 1">
+        <h2>Designer Kurti</h2>
+		<p>Price- 2,500.</p>
+<button onclick="addToCart('kurti', 2500, 'kurti1.jpg')">Add to 🛒</button>
+    </div>
+    
+    <div class="product">
+        <img src="kurti2.jpg" alt="Kurti 2">
+        <h2>Designer Kurti</h2>
+		<p>Price- 3,500.</p>
+<button onclick="addToCart('kurti', 3500, 'kurti2.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="kurti3.jpg" alt="Kurti 3">
+        <h2>Designer Kurti</h2>
+		<p>Price- 2,500.</p>
+		<button onclick="addToCart('kurti', 2500, 'kurti3.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="kurti4.jpg" alt="Kurti 4">
+        <h2>Designer Kurti</h2>
+		<p>Price- 3,500.</p>
+<button onclick="addToCart('kurti', 3500, 'kurti4.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="kurti5.jpg" alt="Kurti 5">
+        <h2>Designer Kurti</h2>
+		<p>Price- 3,000.</p>
+		<button onclick="addToCart('kurti, 3000, 'kurti5.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="kurti6.jpg" alt="Kurti 6">
+        <h2>Designer Kurti</h2>
+		<p>Price- 3,500.</p>
+<button onclick="addToCart('kurti', 3500, 'kurti6.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="kurti7.jpg" alt="Kurti 7">
+        <h2>Designer Kurti</h2>
+		<p>Price- 3,000.</p>
+		<button onclick="addToCart('kurti', 3000, 'kurti7.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="kurti8.jpg" alt="Kurti 8">
+        <h2>Designer Kurti</h2>
+		<p>Price- 2,500.</p>
+<button onclick="addToCart('kurti', 2500, 'kurti8.jpg')">Add to 🛒</button>
+    </div>
+	<div class="product">
+        <img src="kurti9.jpg" alt="Kurti 9">
+        <h2>Designer Kurti</h2>
+		<p>Price- 3,500.</p>
+		<button onclick="addToCart('kurti', 3500, 'kurti9.jpg')">Add to 🛒</button>
+    </div>
+
+    <!-- Add more wedding dress options here as required -->
+</div>
+<div class="section">
+  <img src="supoortpic.png" alt="Our Benefits" class="footer-image">
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById("cart-count").innerText = `(${cart.length})`;
+});
+function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cart.push({ name, price, image });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    alert(name + " added to cart!");
+}
+</script>
+</body>
+</html>

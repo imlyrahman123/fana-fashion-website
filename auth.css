@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+   background-image: url('back2.jpg');
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.remember-container {
+  display: inline-flex; /* Keeps checkbox and label inline without extra space */
+  align-items: center;
+  white-space: nowrap;
+}
+
+.remember-container input {
+  margin: 0; /* Removes default margin around the checkbox */
+}
+
+.auth-box {
+  background: #cc6699;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  width: 300px;
+  text-align: center;
+}
+
+.auth-box h2 {
+  margin-bottom: 20px;
+  color: black;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.auth-box button {
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.auth-box button:hover {
+  background-color: purple;
+}
+
+.auth-box p {
+  margin-top: 12px;
+}
+
+.auth-box a {
+  color: #007bff;
+  text-decoration: none;
+}

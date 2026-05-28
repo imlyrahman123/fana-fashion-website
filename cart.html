@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="website.css">
+  <link rel="stylesheet" href="cart.css">  <!-- optional -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: pink;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      text-align: center;
+    }
+
+    .navbar a:hover {
+      background-color: #e91e63;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 30px;
+      color: #e91e63;
+    }
+
+    .about-section {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      color: #e91e63;
+      font-size: 26px;
+    }
+
+    .about-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .about-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about-section ul li {
+      font-size: 16px;
+      color: #333;
+      margin: 5px 0;
+    }
+
+    .about-section .cta {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background-color: #e91e63;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .about-section .cta:hover {
+      background-color: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="cart.html" class="cart-button">🛒 Cart</a>
+	<a href="login.html">My Account</a>
+  </div>
+
+  <div class="cart-container" id="cart-container"></div>
+  
+
+  <script>
+    // For testing, let's add some demo cart data if there's none in localStorage
+    if (!localStorage.getItem('cart')) {
+      const demoCart = [
+        { id: 1, name: "Dress", price: 2500, image: "dress1.jpg", quantity: 1 },
+        { id: 2, name: "Ornaments", price: 5500, image: "jel2.jpg", quantity: 1 },
+        { id: 3, name: "Dress", price: 3500, image: "dress3.jpg", quantity: 1 },
+        { id: 4, name: "Saree", price: 6500, image: "saree4.jpg", quantity: 1 },
+        { id: 5, name: "Kaftan", price: 2500, image: "kaf5.jpg", quantity: 1 },
+      ];
+      localStorage.setItem('cart', JSON.stringify(demoCart));
+      console.log("Demo cart added to localStorage:", demoCart);  // Debugging line
+    }
+
+    // Load the cart data from localStorage (or initialize to empty if not found)
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log("Loaded cart from localStorage:", cart);  // Debugging line
+
+    // Initialize the cart with quantities set to 1, in case they're missing
+    cart = cart.map(item => ({
+      ...item,
+      quantity: item.quantity || 1
+    }));
+
+    // Save the cart to localStorage
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      console.log("Cart saved to localStorage:", cart);  // Debugging line
+    }
+
+    // Show cart items in the HTML
+    function showCart() {
+      const container = document.getElementById("cart-container");
+
+      // If the cart is empty, show a message and stop further processing
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <p>Your cart is empty.</p>
+          <a class="back-to-shop" href="index.html">← Back to Shop</a>
+        `;
+        return;
+      }
+
+      let total = 0;
+
+      const itemsHTML = cart.map((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+        return `
+          <div class="cart-item">
+            <img src="${item.image || 'https://via.placeholder.com/60'}" alt="${item.name}">
+            <div class="item-info">
+              <strong>${item.name}</strong><br>
+              ৳${item.price} x ${item.quantity} = ৳${subtotal.toFixed(2)}
+              <div class="item-controls">
+                <button onclick="decreaseItem(${index})">−</button>
+                <button onclick="increaseItem(${index})">+</button>
+                <button onclick="removeItem(${index})">❌</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      container.innerHTML = `
+        ${itemsHTML}
+        <div class="total-section">Total: ৳${total.toFixed(2)}</div>
+
+        <form class="checkout-form" onsubmit="placeOrder(event)">
+          <h3>Checkout</h3>
+          <input type="text" id="customer-name" placeholder="Your Name" required>
+          <input type="text" id="customer-phone" placeholder="Phone Number" required>
+          <textarea id="customer-address" rows="3" placeholder="Delivery Address" required></textarea>
+          <button type="submit" class="place-order-btn">Place Order</button>
+        </form>
+
+        <a class="back-to-shop" href="website.html">← Back to Shop</a>
+      `;
+    }
+
+    // Decrease the quantity of an item
+    function decreaseItem(index) {
+      if (cart[index].quantity > 1) {
+        cart[index].quantity--;
+      } else {
+        cart.splice(index, 1);
+      }
+      saveCart();
+      showCart();
+    }
+
+    // Increase the quantity of an item
+    function increaseItem(index) {
+      cart[index].quantity++;
+      saveCart();
+      showCart();
+    }
+
+    // Remove an item from the cart
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+      showCart();
+    }
+
+    // Handle the checkout and placing of the order
+    function placeOrder(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("customer-name").value;
+      const phone = document.getElementById("customer-phone").value;
+      const address = document.getElementById("customer-address").value;
+
+      const orderDetails = cart.map(item => `${item.name} x ${item.quantity}`).join(", ");
+      const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      const message = `Order Details:\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nItems: ${orderDetails}\nTotal: ৳${totalPrice.toFixed(2)}`;
+
+      alert("Order placed! Copying details to clipboard...");
+
+      navigator.clipboard.writeText(message).then(() => {
+        console.log("Copied to clipboard");
+      });
+
+      // Clear the cart after placing the order
+      cart = [];
+      saveCart();
+      showCart();
+    }
+
+    // Initialize the cart display
+    showCart();
+	function placeOrder(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("customer-name").value;
+  const phone = document.getElementById("customer-phone").value;
+  const address = document.getElementById("customer-address").value;
+
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const order = {
+    name,
+    phone,
+    address,
+    items: cart,
+    total: totalPrice
+  };
+
+  // Save order to localStorage for transaction page
+  localStorage.setItem("lastOrder", JSON.stringify(order));
+
+  // Clear cart
+  cart = [];
+  saveCart();
+
+  // Redirect to confirmation page
+  window.location.href = "transaction.html";
+}
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+  <div class="auth-box">
+    <h2>Login</h2>
+    <form onsubmit="return validateLogin(event)">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      
+      <div class="remember-container">
+        <input type="checkbox" id="remember">
+        <label for="remember">Remember Me</label>
+      </div>
+
+      <button type="submit">Login</button>
+      <p><a href="recover.html">Forgot Password?</a></p>
+      <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </form>
+  </div>
+
+  <script>
+    function validateLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (email === 'imly@gmail.com' && password === '1234') {
+        window.location.href = 'index.html'; // Success
+      } else {
+        window.location.href = 'error.html'; // Failure
+      }
+
+      return false;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .confirmation-box {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #e91e63;
+      text-align: center;
+    }
+
+    .summary {
+      margin-top: 20px;
+    }
+
+    .summary h3 {
+      margin-bottom: 10px;
+      color: #c2185b;
+    }
+
+    .summary ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .summary li {
+      margin-bottom: 8px;
+    }
+
+    .footer-message {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4caf50;
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #e91e63;
+    }
+
+    .back-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="confirmation-box">
+  <h2>Thank You for Your Order!</h2>
+
+  <div class="summary">
+    <h3>Customer Info</h3>
+    <ul id="customer-info">
+      <!-- Filled by JavaScript -->
+    </ul>
+
+    <h3>Cart Summary</h3>
+    <ul id="cart-summary">
+      <!-- Filled by JavaScript -->
+    </ul>
+
+    <h3>Total: ৳<span id="total-price">0</span></h3>
+  </div>
+
+  <div class="footer-message">
+    ✅ Your order has been placed successfully!
+  </div>
+
+  <a class="back-home" href="index.html">← Back to Home</a>
+</div>
+
+<script>
+  // Get saved order details from localStorage
+  const savedOrder = JSON.parse(localStorage.getItem("lastOrder"));
+
+  if (savedOrder) {
+    const { name, phone, address, items, total } = savedOrder;
+
+    // Display customer info
+    document.getElementById("customer-info").innerHTML = `
+      <li><strong>Name:</strong> ${name}</li>
+      <li><strong>Phone:</strong> ${phone}</li>
+      <li><strong>Address:</strong> ${address}</li>
+    `;
+
+    // Display ordered items
+    document.getElementById("cart-summary").innerHTML = items.map(item =>
+      `<li>${item.name} x ${item.quantity} = ৳${(item.price * item.quantity).toFixed(2)}</li>`
+    ).join("");
+
+    document.getElementById("total-price").textContent = total.toFixed(2);
+  } else {
+    document.querySelector('.confirmation-box').innerHTML = `<h2>No order found.</h2>`;
+  }
+</script>
+
+</body>
+</html>
